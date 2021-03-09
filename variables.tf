@@ -41,11 +41,6 @@ variable "vsphere_vm_portgroup" {
   description = "the name of the portgroup"
 }
 
-variable "vsphere_vm_gateway" {
-  type = string
-  description = "the ip address of they gateway"
-}
-
 variable "vsphere_vm_cpu" {
   type = number
   description = "the number of vCpus"
@@ -64,4 +59,15 @@ variable "vsphere_vm_guest" {
 variable "vsphere_vm_disksize" {
   type = number
   description = "the size of the disk in GB"
+}
+
+variable "timeout" {
+  description = "The timeout, in minutes, to wait for the virtual machine clone to complete."
+  type        = number
+  default     = 30
+}
+
+variable "linked_clone" {
+  description = "Clone this virtual machine from a snapshot. Templates must have a single snapshot only in order to be eligible."
+  default     = false
 }

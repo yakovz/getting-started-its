@@ -36,6 +36,12 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
+data "vsphere_virtual_machine" "template" {
+  name          = var.vsphere_vm_template
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
+
 resource "vsphere_virtual_machine" "vm" {
   name             = var.vsphere_vm_name
   resource_pool_id = data.vsphere_resource_pool.pool.id
@@ -53,6 +59,15 @@ resource "vsphere_virtual_machine" "vm" {
     label = "disk0"
     size  = var.vsphere_vm_disksize #20
   }
+
+  clone {
+    template_uuid = data.vsphere_virtual_machine.template.id
+    linked_clone  = var.linked_clone
+    timeout       = var.timeout
+
+  }
+
+
 }
 
 
