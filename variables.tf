@@ -47,12 +47,12 @@ variable "vsphere_vm_gateway" {
 }
 
 variable "vsphere_vm_cpu" {
-  type = int
+  type = number
   description = "the number of vCpus"
 }
 
 variable "vsphere_vm_memory" {
-  type = int
+  type = number
   description = "the amount of memory in MB"
 }
 
@@ -62,6 +62,6 @@ variable "vsphere_vm_guest" {
 }
 
 variable "vsphere_vm_disksize" {
-  type = int
+  type = number
   description = "the size of the disk in GB"
 }
