@@ -67,7 +67,6 @@ module "vm" {
   network = {
     "${var.vsphere_vm_portgroup}"  = ["", ""] # To use DHCP create Empty list ["",""]
   }
-  vmgateway         = var.vsphere_vm_gateway
   dc        = var.vsphere_datacenter
   datastore = var.vsphere_datastore
 }
