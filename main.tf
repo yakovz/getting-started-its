@@ -17,33 +17,35 @@ provider "vsphere" {
 }
 
 
+/*
 data "vsphere_datacenter" "dc" {
-  name = "amslab"
+  name = var.vsphere_datacenter
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "datastore1"
+  name          = var.vsphere_datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_resource_pool" "pool" {
-  name          = "cluster1/Resources"
+  #name          = "cluster1/Resources"
+  name          = var.vsphere_datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_network" "network" {
-  name          = "public"
+  name          = var.vsphere_network
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-test"
+  name             = var.vsphere_vm_name
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
 
-  num_cpus = 2
-  memory   = 1024
-  guest_id = "other3xLinux64Guest"
+  num_cpus = var.vsphere_vm_cpu #2
+  memory   = var.vsphere_vm_memory #1024
+  guest_id = var.vsphere_vm_guest #"other3xLinux64Guest"
 
   network_interface {
     network_id = data.vsphere_network.network.id
@@ -51,13 +53,21 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk0"
-    size  = 20
+    size  = var.vsphere_vm_disksize #20
   }
 }
-
-
+*/
 module "vm" {
   source  = "Terraform-VMWare-Modules/vm/vsphere"
   version = "2.1.0"
-  # insert the 46 required variables here
+  vmtemp        = var.vsphere_vm_template
+  instances     = 1
+  vmname        = var.vsphere_vm_name
+  vmrp          = var.vsphere_resource_pool
+  network = {
+    "${var.vsphere_vm_portgroup}"  = ["", ""] # To use DHCP create Empty list ["",""]
+  }
+  vmgateway         = var.vsphere_vm_gateway
+  dc        = var.vsphere_datacenter
+  datastore = var.vsphere_datastore
 }
