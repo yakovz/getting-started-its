@@ -45,3 +45,23 @@ variable "vsphere_vm_gateway" {
   type = string
   description = "the ip address of they gateway"
 }
+
+variable "vsphere_vm_cpu" {
+  type = int
+  description = "the number of vCpus"
+}
+
+variable "vsphere_vm_memory" {
+  type = int
+  description = "the amount of memory in MB"
+}
+
+variable "vsphere_vm_guest" {
+  type = string
+  description = "the name of the os type "
+}
+
+variable "vsphere_vm_disksize" {
+  type = int
+  description = "the size of the disk in GB"
+}
