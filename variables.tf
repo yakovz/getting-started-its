@@ -44,13 +44,13 @@ variable "vsphere_vm_portgroup" {
 variable "vsphere_vm_cpu" {
   type = number
   description = "the number of vCpus"
-  default = 2
+  default = 1
 }
 
 variable "vsphere_vm_memory" {
   type = number
   description = "the amount of memory in MB"
-  default = 1024
+  default = 2048
 }
 
 variable "vsphere_vm_guest" {
