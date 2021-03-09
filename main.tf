@@ -17,7 +17,6 @@ provider "vsphere" {
 }
 
 
-/*
 data "vsphere_datacenter" "dc" {
   name = var.vsphere_datacenter
 }
@@ -56,7 +55,10 @@ resource "vsphere_virtual_machine" "vm" {
     size  = var.vsphere_vm_disksize #20
   }
 }
-*/
+
+
+/*
+#No more VM module because they want to customize, and I don't want that
 module "vm" {
   source  = "Terraform-VMWare-Modules/vm/vsphere"
   version = "2.1.0"
@@ -70,3 +72,4 @@ module "vm" {
   dc        = var.vsphere_datacenter
   datastore = var.vsphere_datastore
 }
+*/
