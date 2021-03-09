@@ -33,7 +33,7 @@ variable "vsphere_vm_name" {
 
 variable "vsphere_resource_pool" {
   type = string
-  description = "the name of the resourcepool"
+  description = "the name of the resourcepool for examples: Cluster1/Resources " 
 }
 
 variable "vsphere_vm_portgroup" {
@@ -44,21 +44,25 @@ variable "vsphere_vm_portgroup" {
 variable "vsphere_vm_cpu" {
   type = number
   description = "the number of vCpus"
+  default = 2
 }
 
 variable "vsphere_vm_memory" {
   type = number
   description = "the amount of memory in MB"
+  default = 1024
 }
 
 variable "vsphere_vm_guest" {
   type = string
   description = "the name of the os type "
+  default = "ubuntu64Guest"
 }
 
 variable "vsphere_vm_disksize" {
   type = number
   description = "the size of the disk in GB"
+  default = 20
 }
 
 variable "timeout" {
